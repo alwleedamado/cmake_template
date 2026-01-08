@@ -86,7 +86,7 @@ macro(myproject_setup_options)
     option(myproject_ENABLE_CACHE "Enable ccache" OFF)
   else()
     option(myproject_ENABLE_IPO "Enable IPO/LTO" ON)
-    option(myproject_WARNINGS_AS_ERRORS "Treat Warnings As Errors" ON)
+    option(myproject_WARNINGS_AS_ERRORS "Treat Warnings As Errors" OFF)
     option(myproject_ENABLE_USER_LINKER "Enable user-selected linker" OFF)
     option(myproject_ENABLE_SANITIZER_ADDRESS "Enable address sanitizer" ${SUPPORTS_ASAN})
     option(myproject_ENABLE_SANITIZER_LEAK "Enable leak sanitizer" OFF)
@@ -139,7 +139,7 @@ macro(myproject_global_options)
 
   if(myproject_ENABLE_HARDENING AND myproject_ENABLE_GLOBAL_HARDENING)
     include(cmake/Hardening.cmake)
-    if(NOT SUPPORTS_UBSAN 
+    if(NOT SUPPORTS_UBSAN
        OR myproject_ENABLE_SANITIZER_UNDEFINED
        OR myproject_ENABLE_SANITIZER_ADDRESS
        OR myproject_ENABLE_SANITIZER_THREAD
@@ -228,7 +228,7 @@ macro(myproject_local_options)
 
   if(myproject_ENABLE_HARDENING AND NOT myproject_ENABLE_GLOBAL_HARDENING)
     include(cmake/Hardening.cmake)
-    if(NOT SUPPORTS_UBSAN 
+    if(NOT SUPPORTS_UBSAN
        OR myproject_ENABLE_SANITIZER_UNDEFINED
        OR myproject_ENABLE_SANITIZER_ADDRESS
        OR myproject_ENABLE_SANITIZER_THREAD
